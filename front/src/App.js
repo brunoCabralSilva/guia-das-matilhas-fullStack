@@ -24,10 +24,12 @@ function App() {
     <AnimateSharedLayout>
       <AnimatePresence>
         <Switch>
-          <Route exact path="/guia-das-matilhas" component={Home} />
+
           <Route path='/login' component={Login} />
           <Route path="/painel-admin" component={Painel} />
           <Route path="/painel-dons" component={RegisterGift} />
+
+          <Route exact path="/guia-das-matilhas" component={Home} />
           <Route path="/trybes" component={Trybes} />
           <Route path="/breeds" component={Breeds} />
           <Route path="/auspices" component={Auspices} />
@@ -40,6 +42,7 @@ function App() {
           <Route path="/rituais" component={Rituals} />
           <Route path="/parceiros" component={Friends} />
           <Route exact path="*" component={NotFound} />
+          
         </Switch>
       </AnimatePresence>
     </AnimateSharedLayout>
