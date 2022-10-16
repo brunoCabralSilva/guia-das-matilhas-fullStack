@@ -7,6 +7,7 @@ export default function RegisterGift() {
   const [book, setBook] = useState('');
   const [page, setPage] = useState(0);
   const [belong, setBelong] = useState('');
+  const [vName, setVName] = useState('');
   
   const [name, setName] = useState('');
   const [rank, setRank] = useState(0);
@@ -97,6 +98,24 @@ export default function RegisterGift() {
     }
   }
 
+  const verifyName = async () => {
+    if (name === '' || name.length < 4) {
+      window.alert('Necessário adicionar um nome com pelo menos quatro caracteres para o dom');
+    } else {
+      const verify = await axios.post('http://localhost:3301/gifts/name', {
+        name,
+      });
+      if (verify.data.length === 0) {
+        setVName("Nome disponível para cadastro");
+      } else {
+        setVName("Nome já existente na base de dados");
+      }
+    }
+    setTimeout(() => {
+      setVName("");
+    }, 2000);
+  }
+
   return (
     <div className="w-full min-h-screen flex flex-row relative">
       <img
@@ -116,8 +135,17 @@ export default function RegisterGift() {
             className="w-2/3 p-2 border"
             onChange={(e) => setName(e.target.value)}
           />
-          <button type="button" className="ml-2 p-2 border">Verificar</button>
+          <button
+            type="button"
+            className="ml-2 p-2 border"
+            onClick={verifyName}
+          >
+            Verificar
+          </button>
         </label>
+        <div className="w-full text-center">
+          <p className="my-2">{vName}</p>
+        </div>
         <label
           htmlFor='rank'
           className="p-2 w-full flex items-center"
