@@ -1,7 +1,22 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import axios from 'axios';
+import { useHistory } from 'react-router-dom';
 
 export default function RegisterGift() {
+
+  const history = useHistory();
+  useEffect(() => {
+    const authToken = async () => {
+    const token = localStorage.getItem('token');
+    const authentication = await axios.post ('http://localhost:3301/painel', {
+      token, 
+    });
+    if (!authentication.data.token) {
+      history.push('/login');
+    }
+    }
+    authToken();
+  }, []);
 
   const [edition, setEdition] = useState('');
   const [book, setBook] = useState('');

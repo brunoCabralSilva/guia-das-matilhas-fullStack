@@ -1,7 +1,21 @@
-import React from 'react';
-import { Link } from 'react-router-dom';
+import axios from 'axios';
+import React, { useEffect } from 'react';
+import { Link, useHistory } from 'react-router-dom';
 
 export default function Painel() {
+  const history = useHistory();
+  useEffect(() => {
+    const authToken = async () => {
+    const token = localStorage.getItem('token');
+    const authentication = await axios.post ('http://localhost:3301/painel', {
+      token, 
+    });
+    if (!authentication.data.token) {
+      history.push('/login');
+    }
+    }
+    authToken();
+  }, []);
   return(
     <div className="grid grid-rows-3 grid-cols-5 gap-2 m-4 items-center justify-center">
       <Link className="col-span-3 sm:col-span-2 h-30vh relative">

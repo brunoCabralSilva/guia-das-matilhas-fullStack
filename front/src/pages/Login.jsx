@@ -6,18 +6,16 @@ import { useHistory } from 'react-router-dom';
 export default function Login() {
   const [user, setUser ] = useState('');
   const [password, setpassword ] = useState('');
-  const [response, setResponse] = useState('');
   const history = useHistory();
 
-  const submit = async (e) => {
-    e.preventDefault();
+  const submit = async () => {
     const resp = await axios.post('http://localhost:3301/login',
       {
-        user: user,
-        password: password,
+        user,
+        password,
       }
     );
-    setResponse(resp);
+    localStorage.setItem('token', resp.data.token );
 
     if(resp.data.message === 'Usuário autorizado!') {
         history.push('/painel-admin');
@@ -40,13 +38,12 @@ export default function Login() {
         onChange={(e) => setpassword(e.target.value)}
       />
       <button
-        type="submit"
+        type="button"
+        onClick={submit}
         className="p-2 m-2 bg-black text-white"
       >
         Entrar
       </button>
-      <p className="my-10 w-full text-center text-white font-bold">
-        {response && response.data.message}</p>
     </form>
     </div>
   );
