@@ -48,6 +48,8 @@ export default function RegisterGift() {
     }
     const bookSelect = document.getElementById("book");
     bookSelect.selectedIndex = 0;
+    const editionSelect = document.getElementById('edition');
+    editionSelect.selectedIndex = 0;
   }
 
   const addNewBelong = () => {
@@ -132,43 +134,41 @@ export default function RegisterGift() {
   }
 
   return (
-    <div className="w-full min-h-screen flex flex-row relative">
-      <img
-        src={require('../../images/werewolf.png')}
-        className="w-full h-full object-cover absolute z-1"
-      />
-      <form className="glassmorphism w-1/2 m-8 bg-white w-1/2 flex flex-col p-8 z-10">
+    <div className="w-full min-h-screen bg-wolf-01 bg-cover flex flex-row relative">
+      <form className="bg-f-transp  rounded-xl w-1/2 m-8 w-1/2 flex flex-col p-8 z-10">
         <label
           htmlFor="name"
-          className="mb-2 w-full flex items-center"
+          className="bg-f-transp mb-1 w-full flex items-center"
         >
-          <span className="p-2 w-1/3">Nome do Dom:</span>
-          <input
-            type="text"
-            value={name}
-            id="name"
-            className="w-2/3 p-2 border"
-            onChange={(e) => setName(e.target.value)}
-          />
-          <button
-            type="button"
-            className="ml-2 p-2 border"
-            onClick={verifyName}
-          >
-            Verificar
-          </button>
+          <span className="p-3 w-1/3 text-white">Nome do Dom:</span>
+          <div className="w-full h-full">
+            <input
+              type="text"
+              value={name}
+              id="name"
+              className="w-4/5 h-full p-2 border"
+              onChange={(e) => setName(e.target.value)}
+            />
+            <button
+              type="button"
+              className="h-full w-1/5 p-2 border text-white"
+              onClick={verifyName}
+            >
+              Verificar
+            </button>
+          </div>
         </label>
         <div className="w-full text-center">
-          <p className="my-2">{vName}</p>
+          <p className="my-1 text-white font-bold">{vName}</p>
         </div>
         <label
           htmlFor='rank'
-          className="p-2 w-full flex items-center"
+          className="bg-f-transp w-full h-full flex items-center"
         >
-          <span className="w-1/3"> Rank / Posto:</span>
+          <span className="text-white p-3 w-1/3"> Rank / Posto:</span>
           <select
             id="rank"
-            className="w-2/3 p-2 border text-center"
+            className="w-full h-full p-2 border text-center"
             onChange={(e) => setRank(e.target.value)}
           >
             <option disabled selected>Selecione um Posto</option>
@@ -180,7 +180,8 @@ export default function RegisterGift() {
             <option value={6}>Lendário (6)</option>
           </select>
         </label>
-        <p className="p-2 pb-5 w-1/3">Fonte:</p>
+        <div className="p-2 bg-f-transp my-2">
+        <p className="text-white p-2 pb-3 w-1/3">Fonte:</p>
         {
           listOfFonts.map((fonts, index) => (
             <div key={index} className="bg-gray-200 my-2 p-2 flex">
@@ -199,10 +200,10 @@ export default function RegisterGift() {
             </div>
           ))
         }
-        <div className="pl-4 bg-gray-200 p-4">
+        <div className="pl-4 bg-gray-200 p-2">
           <label
               htmlFor="book"
-              className="p-2 w-full flex items-center"
+              className="pl-2 w-full flex items-center"
             >
               <span className="w-1/3">Livro</span>
               <select
@@ -218,7 +219,7 @@ export default function RegisterGift() {
             </label>
           <label
             htmlFor="page"
-            className="p-2 w-full flex items-center"
+            className="pl-2 py-1 w-full flex items-center"
           >
           <span className="w-1/3">Página</span>
             <input
@@ -231,13 +232,13 @@ export default function RegisterGift() {
           </label>
           <label
             htmlFor="edition"
-            className="p-2 w-full flex items-center"
+            className="pl-2 w-full flex items-center"
           >
             <span className="w-1/3">Edição:</span>
             <select
               id="edition"
               className="w-2/3 p-2 border text-center"
-              onChange={(e) =>  setEdition(e.target.value)}
+              onChange={(e) => setEdition(e.target.value)}
             >
               <option disabled selected>Selecione uma Edição</option>
               <option value="W20">W20</option>
@@ -248,11 +249,12 @@ export default function RegisterGift() {
         </div>
         <button
           type="button"
-          className="p-4 bg-gray-200 my-2"
+          className="p-4 w-full bg-black text-white rounded"
           onClick={addFont}
         >
           Adicionar
         </button>
+        </div>
         <span className="w-1/3 my-4">Pertencente a:</span>
         <div className="flex flex-col">
             {
