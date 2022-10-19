@@ -2,9 +2,10 @@ import Points from './Points';
 
 export default function Attributes() {
   return (
-    <form className="w-full">
+    <div className="w-full">
       <div className="flex flex-col items-center">
         <h1 className="p-4 text-xl font-bold">Atributos</h1>
+        <p>Atributos 5/4/3, uma quantidade para cada coluna - O primeiro ponto não conta</p>
         <div className="flex-col w-full">
           <div className="flex w-full">
             <p className="w-2/12 text-right pr-3">Poder</p>
@@ -35,6 +36,6 @@ export default function Attributes() {
           </div>
         </div>
       </div>
-    </form>
+    </div>
   );
 }
