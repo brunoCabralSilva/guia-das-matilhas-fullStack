@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { Swiper, SwiperSlide } from 'swiper/react';
 
 import 'swiper/css';
@@ -16,7 +16,17 @@ export default class Carousel extends React.Component {
     } return (<img src={require(`../images/breeds/${item.imagem}`)} alt={item.nome} className="h-80% object-contain" />);
   }
 
+  componentDidMount() {
+    const classSwiper = document.getElementsByClassName('swiper-slide');
+    for(let i = 0; i < classSwiper.length; i += 1) {
+      classSwiper[i].style.maxWidth = '30%';
+      console.log(classSwiper[i]);
+    }
+  };
+  
   render() {
+
+
     const { list, navigation, loop } = this.props;
     return(
       <Swiper
@@ -39,10 +49,12 @@ export default class Carousel extends React.Component {
       >
         {
           list.map((item) => (
-            <SwiperSlide className="mx-2 h-full blur-sm w-10vw p-4 flex flex-col items-center justify-center">
-              { this.imageReturn(item) }
-              <p className="text-white font-amatic font-bold text-4xl w-full text-center py-2">{item.nome}</p>
-            </SwiperSlide>
+            <div className="slider-swiper-div">
+              <SwiperSlide className="mx-2 h-full blur-sm w-10vw p-4 flex flex-col items-center justify-center">
+                { this.imageReturn(item) }
+                <p className="text-white font-amatic font-bold text-4xl w-full text-center py-2">{item.nome}</p>
+              </SwiperSlide>
+            </div>
           ))
         }
       </Swiper>

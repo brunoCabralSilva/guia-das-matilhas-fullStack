@@ -2,15 +2,16 @@ import Points from './Points';
 
 export default function BlocoHabilidade({name, inepto, list}) {
   return (
-    <div>
-      <h1 className="pt-10 px-4 font-bold w-full text-center">{ name }</h1>
+    <div className="">
+      <h1 className="pt-5 px-4 font-bold w-full text-center">{ name }</h1>
       <p className="w-full text-center pb-5">{ inepto }</p>
-      <div className="w-full">
+      <div className="flex flex-col w-full justify-around">
         {
           list.map((habilidade, index) => (
-            <div className="flex w-full items-center" key={index}>
-              <p className="pl-3 w-1/2">{habilidade}:</p>
-              <Points type="habilidade w-1/2" />
+            <div className="w-full flex items-center justify-between" key={index}>
+              <p className="w-1/3 font-bold">{habilidade}:</p>
+              <input type="text" className="w-28 mx-3" />
+              <Points type={habilidade} />
             </div>
           ))
         }

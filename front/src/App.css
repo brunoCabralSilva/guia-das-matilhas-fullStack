@@ -66,10 +66,13 @@ body {
 }
 
 .swiper-slide {
-  max-width: 30%;
   background-image: url('./images/wallpapers/001.jpg');
   background-position: center;
   background-size: cover;
+}
+
+.slider-swiper-div {
+  max-width: 30%;
 }
 
 @media (min-width: 650px) and (max-width: 965px) {

@@ -1,74 +1,23 @@
 import Points from './Points';
 
 export default function Vantagens() {
-    return (
+  const list=[1, 2, 3, 4, 5, 6, 7];
+  return (
+    <div>
+      <p className="py-4 text-2xl font-bold">Vantagens</p>
       <div>
-        <p className="py-4">Vantagens</p>
-        <div>
-          <div className="flex w-full items-center">
-            <input
-              type="text"
-              className="pl-3 w-full"
-            />
-            <Points type="habilidade w-1/2" />
-          </div>
-          <div className="flex w-full items-center">
-            <input
-              type="text"
-              className="pl-3 w-full"
-            />
-            <Points type="habilidade w-1/2" />
-          </div>
-          <div className="flex w-full items-center">
-            <input
-              type="text"
-              className="pl-3 w-full"
-            />
-            <Points type="habilidade w-1/2" />
-          </div>
-          <div className="flex w-full items-center">
-            <input
-              type="text"
-              className="pl-3 w-full"
-            />
-            <Points type="habilidade w-1/2" />
-          </div>
-          <div className="flex w-full items-center">
-            <input
-              type="text"
-              className="pl-3 w-full"
-            />
-            <Points type="habilidade w-1/2" />
-          </div>
-          <div className="flex w-full items-center">
-            <input
-              type="text"
-              className="pl-3 w-full"
-            />
-            <Points type="habilidade w-1/2" />
-          </div>
-          <div className="flex w-full items-center">
-            <input
-              type="text"
-              className="pl-3 w-full"
-            />
-            <Points type="habilidade w-1/2" />
-          </div>
-          <div className="flex w-full items-center">
-            <input
-              type="text"
-              className="pl-3 w-full"
-            />
-            <Points type="habilidade w-1/2" />
-          </div>
-          <div className="flex w-full items-center">
-            <input
-              type="text"
-              className="pl-3 w-full"
-            />
-            <Points type="habilidade w-1/2" />
-          </div>
-        </div>
+        {
+          list.map(() => (
+            <div className="flex w-full items-center justify-between">
+              <input
+                type="text"
+                className="pl-3 w-full"
+              />
+              <Points type="habilidade" />
+            </div>
+          ))
+        }
       </div>
-    );
-  }
+    </div>
+  );
+}
