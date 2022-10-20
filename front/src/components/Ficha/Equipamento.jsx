@@ -1,7 +1,8 @@
 export default function Equipamento() {
   return (
-    <div>
-      Equipamento
+    <div className="flex flex-col">
+      <p className="py-4">Equipamento</p>
+      <textarea className="h-24" />
     </div>
   );
 }
