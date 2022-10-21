@@ -6,7 +6,6 @@ export default function Points(type, func) {
   const [lv3, setLv3] = useState(false);
   const [lv4, setLv4] = useState(false);
   const [lv5, setLv5] = useState(false);
-  const [itemType, setItemType] = useState(type);
   const [value, setValue] = useState(1);
 
   const nivel1 = () => { 

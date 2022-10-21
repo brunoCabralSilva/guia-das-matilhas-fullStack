@@ -3,7 +3,7 @@ import BlocoHabilidade from './BlocoHabilidade';
 
 export default function Habilidades() {
   return (
-    <div className="w-full flex flex-col items-center">
+    <div className="w-full relative z-30 flex flex-col items-center">
       <h1 className="pt-4 px-4 text-4xl font-bold">Habilidades</h1>
         <div className="flex flex-col items-center w-full">
           <p>

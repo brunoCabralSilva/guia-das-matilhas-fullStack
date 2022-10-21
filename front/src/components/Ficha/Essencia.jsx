@@ -8,7 +8,7 @@ export default function Essencia() {
     for (let i = 0; i < 20; i += 1 ) {
       list.push(
         <div
-          className={`m-1 w-5 h-5 border border-black`}
+          className={`m-1 w-5 bg-white h-5 border border-black`}
         />
       );
     }

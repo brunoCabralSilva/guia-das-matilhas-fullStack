@@ -79,6 +79,7 @@ module.exports = {
       },
       colors: {
         'h-transp': 'rgb(0,0,0,0.3)',
+        'light-transp': 'rgb(255,255,255,0.1)',
         '5-transp': 'rgb(0,0,0,0.5)',
         'f-transp': 'rgb(0,0,0,0.6)',
         '7-transp': 'rgb(0,0,0,0.6)',

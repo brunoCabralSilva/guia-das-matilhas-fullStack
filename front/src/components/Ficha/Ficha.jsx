@@ -3,7 +3,7 @@ import { Swiper, SwiperSlide } from 'swiper/react';
 import { Navigation, Pagination } from 'swiper';
 import 'swiper/css';
 
-import Attributes from './Attributes';
+import Atributos from './Atributos';
 import Habilidades from './Habilidades';
 import Forms from './Forms';
 import OutrasCaracteristicas from './OutrasCaracteristicas';
@@ -30,20 +30,26 @@ export default function Ficha() {
         paginagion={{clickable:true}}
         slidesPerView={1}
       >
-        <SwiperSlide>
-          <Attributes />
+        <SwiperSlide className="relative">
+          <div className="absolute w-full h-screen bg-light-transp z-10" />
+          <Atributos />
           <Habilidades />
         </SwiperSlide>
-        <SwiperSlide>
+        <SwiperSlide className="relative">
+          <div className="absolute w-full h-screen bg-light-transp z-10" />
           <OutrasCaracteristicas />
         </SwiperSlide>
-        <SwiperSlide className="px-20 pt-10">
-          <Desvantagens />
-          <Ataque />
-          <Equipamento />
-          <Experiencia />
+        <SwiperSlide className="relative">
+          <div className="absolute w-full h-screen bg-light-transp z-10" />
+          <div className="px-20 pt-10">
+            <Desvantagens />
+            <Ataque />
+            <Equipamento />
+            <Experiencia />
+          </div>
         </SwiperSlide>
-        <SwiperSlide>
+        <SwiperSlide className="relative">
+          <div className="absolute w-full h-screen bg-light-transp z-10" />
           <Forms />
         </SwiperSlide>
       </Swiper>
