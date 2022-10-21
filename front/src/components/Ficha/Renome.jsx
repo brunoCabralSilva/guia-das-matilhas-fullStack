@@ -1,4 +1,5 @@
 import Points from './Points';
+
 export default function Renome() {
   const list = [ 'Glória', 'Honra', 'Pureza', 'Sabedoria', 'Sagacidade' ];
     return (
@@ -15,4 +16,4 @@ export default function Renome() {
         }
       </div>
     );
-  }
+}

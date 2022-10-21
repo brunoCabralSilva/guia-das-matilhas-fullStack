@@ -18,6 +18,7 @@ export default function Vantagens() {
     }
     setVantagem(list);
   }, []);
+  
   return (
     <div>
       <p className="py-4 text-2xl font-bold">Vantagens</p>
