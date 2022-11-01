@@ -1,3 +1,5 @@
+SET NAMES utf8mb4;
+
 DROP SCHEMA IF EXISTS guia_das_matilhas;
 CREATE SCHEMA guia_das_matilhas;
 USE guia_das_matilhas;
@@ -79,6 +81,53 @@ INSERT INTO login_app (login_user, login_password)
 	VALUES
     ('bruno-cabral', 123456),
     ('thiago-lucas', 123456);
+
+INSERT INTO guia_das_matilhas.belongs(belong_name)
+  VALUES
+	('W20'),
+  ('Core book Revised'),
+  ('Changing Ways W20'),
+  ('Players Guide to Garou (Revised)'),
+  ('Book of Auspices'),
+  ('20th Anniversary Edition'),
+  ('Tribebook: Black Furies (Revised)'),
+  ('Tribebook: Black Furies'),
+  ('Tribebook: Bone Gnawers (Revised)'),
+  ('Players Guide Second Edition'),
+  ('Past Lives'),
+  ('Tribebook: Children of Gaia (Revised)'),
+  ('Tribebook: Wendigo'),
+  ('Croatan Song'),
+  ('Tribebook: Get of Fenris (Revised)'),
+  ('Tribebook: Glass Walkers (Revised)'),
+  ('Book of the City'),
+  ('Umbra'),
+  ('Ways of the Wolf'),
+  ('Tribebook: Red Talons (Revised)'),
+  ('Tribebook: Bone Gnawers'),
+  ('Tribebook Bone Gnawers (Revised)'),
+  ('Tribebook: Children of Gaia'),
+  ('Tribebook: Fianna (Revised)'),
+  ('Rage Across the World W20'),
+  ('Guardians of the Caerns'),
+  ('Rage Across Australia'),
+  ('Players Guide 1st Edition'),
+  ('Core book 2nd Edition'),
+  ('Tribebook: Shadow Lords (Revised)'),
+  ('Tribebook: Silent Striders (Revised)'),
+  ('Apocalypse'),
+  ('Rage Across the Heavens'),
+  ('20th Anniversary Gift'),
+  ('Tribebook: Silent Striders'),
+  ('Tribebook: Silver Fangs (Revised)'),
+  ('Tribebook: Stargazers (Revised)'),
+  ('Rage Across the Amazon'),
+  ('Tribebook: Red Talons'),
+  ('Tribebook: Uktena (Revised)'),
+  ('Tribebook: Wendigo (Revised)'),
+  ('Horrible taunting of SV hunters'),
+  ('Rage: Warriors of the Apocalypse'),
+  ('1st Edition Storyteller’s Handbook');
 
 INSERT INTO guia_das_matilhas.auspices(auspices_name, auspices_moon, auspices_fury, auspices_image1, auspices_image2, auspices_image3)
 VALUES
