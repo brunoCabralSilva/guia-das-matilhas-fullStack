@@ -13,12 +13,56 @@ export default class GiftExibition extends React.Component {
       this.setState({ giftDescription: 'hidden' });
     }
   }
+
+  returnListBelongs = (arrayCategories) => {
+    const array = arrayCategories.map((array, index) => {
+      if (index + 1 < arrayCategories.length) {
+        return (<span>
+          {array}
+          {', '}
+        </span>
+        );
+      }
+      else { 
+        return (
+          <span>
+            {array}
+            {'.'}
+          </span>
+        );
+      }
+      });
+    return array;
+  };
+
+  returnListFonts = (source) => {
+    { console.log(source) }
+    return source.map((array) => (
+      <p>
+        Livro:
+        {' '}
+        {array.book}
+        {', '}
+        Pag.
+        {' '}
+        {array.page}
+        {' - '}
+        Edição:
+        {' '}
+        { array.edition }
+        {'.'}
+      </p>
+    ));
+  };
+
   render() {
     const {
       source,
       arrayCategories,
       arraysubtypes,
       description,
+      descriptionPtBr,
+      systemPtBr,
       system,
       name,
       level,
@@ -57,13 +101,14 @@ export default class GiftExibition extends React.Component {
         </div>
         {giftDescription !== 'hidden' && <hr className="my-3 w-9/12 sm:w-10/12 bg-white text-white" />}
         <div className={giftDescription}>
-          <p className="my-2"><strong>Fonte:</strong> {source}, pg. X</p>
-          <p className="my-2"><strong>Pertencente a: </strong>{arrayCategories}</p>
+          <p className="my-2"><strong>Fonte:</strong> { this.returnListFonts(source) }</p>
+          <p className="my-2"><strong>Pertencente a: </strong>
+          { this.returnListBelongs(arrayCategories) }</p>
           {arraysubtypes.length === 0
             ? <p> </p>
-            : <p className="my-2"><strong>Pré-Requisito: </strong>{arraysubtypes}</p>}
-          <p className="my-2">Texto Traduzido</p>
-          <p className="my-2"><strong>Sistema:</strong> Sistema Traduzido</p>
+            : <p className="my-2"><strong>Pré-Requisito: </strong>{ arraysubtypes }</p>}
+          <p className="my-2"><strong>Texto Traduzido: </strong>{ descriptionPtBr }</p>
+          <p className="my-2"><strong>Sistema:</strong> { systemPtBr }</p>
           <p className="my-2"><strong>Texto do livro:</strong></p>
           <p className="my-2">{description}</p>
           <p className="my-2"><strong>System:</strong> {system}</p>
