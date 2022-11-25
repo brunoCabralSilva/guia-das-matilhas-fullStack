@@ -115,7 +115,7 @@ export default function RegisterGift() {
       window.alert('Dom já existe na base de dados');
     }
     else {
-      const register = await axios.post('http://localhost:3301/gifts', {
+      await axios.post('http://localhost:3301/gifts', {
         name,
         rank,
         font: listOfFonts,

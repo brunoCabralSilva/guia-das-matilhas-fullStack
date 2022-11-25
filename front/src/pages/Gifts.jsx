@@ -1,4 +1,5 @@
 import React from 'react';
+import axios from 'axios';
 import { motion } from 'framer-motion';
 import Nav from '../components/Nav';
 import Filter from '../components/Filter';
@@ -13,6 +14,7 @@ const tribos = require('../data/tribos.json');
 
 export default class Gifts extends React.Component {
   state = {
+    listAllGifts: false,
     feature: [],
     rankSelected: [],
     bookSelected: [],
@@ -30,8 +32,10 @@ export default class Gifts extends React.Component {
     nameFilter: '',
   }
 
-  componentDidMount() {
+  async componentDidMount() {
     window.scrollTo(0, 0);
+    const data = await axios.get('http://localhost:3301/gifts');
+    this.setState({ listAllGifts: data.data });
   }
 
   giftReturn = () => {
@@ -302,7 +306,7 @@ export default class Gifts extends React.Component {
     } = this.state;
     return (
       <div className="bg-wolf-01 bg-cover bg-center sm:bg-top pt-2 text-white flex justify-center">
-        <div clasName="max-w-1200px relative flex flex-col">
+        <div className="max-w-1200px relative flex flex-col">
         <div className="bg-f-transp absolute"></div>
           <Nav />
         <motion.div
@@ -432,21 +436,23 @@ export default class Gifts extends React.Component {
               <div className="w-full flex justify-center">
               <button
                 className="w-95% sm:w-99% m-3 bg-black py-2 hover:border hover-border-white"
-                onClick={this.giftReturn}
+                onClick={ this.giftReturn }
               >
                 Realizar Busca
               </button>
               </div>
             </div>
-            {showGifts
-              ? <div>
-                <GiftSearch
-                  featureSearch={featureSearch}
-                  rankSearch={rankSearch}
-                  bookSearch={bookSearch}
-                />
-              </div>
-              : null
+            {
+              showGifts && this.state.listAllGifts ? 
+                <div>
+                  <GiftSearch
+                    listAllGifts={this.state.listAllGifts}
+                    featureSearch={featureSearch}
+                    rankSearch={rankSearch}
+                    bookSearch={bookSearch}
+                  />
+                </div>
+                : null
             }
           </div>
         </motion.div>
