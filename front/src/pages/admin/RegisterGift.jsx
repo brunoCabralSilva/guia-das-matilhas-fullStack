@@ -92,6 +92,9 @@ export default function RegisterGift() {
   }
 
   const addGift = async () => {
+    const verify = await axios.post('http://localhost:3301/gifts/name', {
+        name,
+    });
     if (name === '' || name.length < 4) {
       window.alert('Necessário adicionar um nome com pelo menos quatro caracteres para o dom');
     } else if (rank === 0) {
@@ -108,7 +111,10 @@ export default function RegisterGift() {
       window.alert('Necessário inserir uma descrição maior para o campo "Texto original".');
     } else if (systemOriginal.length <= 10 ) {
       window.alert('Necessário inserir uma descrição maior para o campo "Sistema original"');
-    } else {
+    } else if (verify.data.length !== 0) {
+      window.alert('Dom já existe na base de dados');
+    }
+    else {
       const register = await axios.post('http://localhost:3301/gifts', {
         name,
         rank,
@@ -130,6 +136,7 @@ export default function RegisterGift() {
       setListOfFonts([]);
       setListOfBelongs([]);
       window.alert(`Dom adicionado com sucesso!`);
+      window.scrollTo(0, 0);
     }
     await showAllGifts();
   }
@@ -451,6 +458,7 @@ export default function RegisterGift() {
                 level={gifts.rank}
                 name={gifts.name_gift}
                 gifts={true}
+                admin={true}
               />
             ))
           }

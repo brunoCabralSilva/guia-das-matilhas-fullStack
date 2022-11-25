@@ -20,9 +20,9 @@
         "link": "/dons"
     },
     {
-        "nome": "Rituais",
+        "nome": "Admin",
         "class": "navegation-default navegation5",
-        "link": "/rituais"
+        "link": "/login"
     },
     {
         "nome": "Parceiros",

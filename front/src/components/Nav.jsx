@@ -167,13 +167,6 @@ export default class Nav extends React.Component {
               Quem Somos
             </Link>
           </li>
-        <div className="absolute mt-2 right-5">
-          <Link to="/login">
-            <p className="text-white font-bold px-4 py-2 border border-white hover:bg-f-transp transition duration-500 rounded">
-              Login
-            </p>
-          </Link>
-        </div>
         </motion.ul>
       </nav>
     );
