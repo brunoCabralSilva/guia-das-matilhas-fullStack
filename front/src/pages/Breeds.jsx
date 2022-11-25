@@ -1,14 +1,20 @@
 import React from 'react';
+import axios from 'axios';
 import { motion } from 'framer-motion';
 import Nav from '../components/Nav';
 import Footer from '../components/Footer';
-import racas from '../data/racas.json';
 import Carousel from '../components/Carousel';
 
 export default class Breeds extends React.Component {
+  state = {
+    trybeLists: [],
+  }
 
-  componentDidMount() {
+  async componentDidMount() {
     window.scrollTo(0, 0);
+    const allLists = await axios.get('http://localhost:3301/gifts/lists');
+    this.setState({ trybeLists: allLists.data.queryBreeds });
+    console.log(allLists.data.queryBreeds)
   }
 
   render() {
@@ -31,12 +37,15 @@ export default class Breeds extends React.Component {
           <h1 className="text-4xl text-white bg-gradient-to-r from-f-transp to-transparent p-5 ml-3 mt-2 sm:mt-3">
             Raças
           </h1>
-          <Carousel
-            list={racas}
-            repository='breeds'
-            navigation={true}
-            loop={true}
-          />
+          {
+            this.state.trybeLists.length> 0 &&
+            <Carousel
+              list={this.state.trybeLists}
+              repository='breeds'
+              navigation={true}
+              loop={true}
+            />
+          }
         </div>
         <div className="footer-features">
           <Footer />

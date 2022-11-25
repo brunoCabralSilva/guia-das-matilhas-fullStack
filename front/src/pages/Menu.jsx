@@ -66,6 +66,7 @@ export default class Menu extends React.Component {
         {
           navegation.map((nav, index) => (
             <motion.div
+              key={index}
               className={nav.class}
               custom={index}
               variants={item}

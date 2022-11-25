@@ -241,8 +241,9 @@ export default function RegisterGift() {
                   >
                     <option disabled selected>Selecione um Livro</option>
                     {
-                      listBooks.map((book) => (
+                      listBooks.map((book, index) => (
                         <option
+                          key={ index }
                           className=""
                           value={ book.belong_name }
                         >
@@ -340,20 +341,20 @@ export default function RegisterGift() {
                 <option disabled value={0} selected>Selecione</option>
                 <option disabled value={0}>Tribos</option>
                 {
-                  listTrybes.map((li) => (
-                    <option value={ li.trybes_name }>{ li.trybes_name }</option>
+                  listTrybes.map((li, index) => (
+                    <option key={ index } value={ li.trybes_name }>{ li.trybes_name }</option>
                   ))
                 }
                 <option disabled value={0}>Raça</option>
                 {
-                  listBreeds.map((li) => (
-                    <option value={ li.breeds_name }>{ li.breeds_name }</option>
+                  listBreeds.map((li, index) => (
+                    <option key={ index } value={ li.breeds_name }>{ li.breeds_name }</option>
                   ))
                 }
                 <option disabled value={0}>Augúrios</option>
                 {
-                  listAuspices.map((li) => (
-                    <option value={ li.auspices_name }>{ li.auspices_name }</option>
+                  listAuspices.map((li, index) => (
+                    <option key={ index } value={ li.auspices_name }>{ li.auspices_name }</option>
                   ))
                 }
               </select>
@@ -446,8 +447,9 @@ export default function RegisterGift() {
         </div>
         <div className={`text-white ${showGifts ? 'flex flex-wrap': 'hidden'}`}>
           {
-            listGifts &&  listGifts.data.map((gifts) => (
+            listGifts &&  listGifts.data.map((gifts, index) => (
               <GiftExibition
+                key={ index }
                 source={gifts.font}
                 arrayCategories={gifts.belong}
                 arraysubtypes={[]}

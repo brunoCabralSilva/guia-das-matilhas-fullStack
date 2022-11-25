@@ -15,9 +15,9 @@ export default class PopUp extends React.Component {
       divideFeature,
     } = this.props;
 
-    const rankList = rankSelected.map((item) => {
+    const rankList = rankSelected.map((item, index) => {
       return (
-        <div className="snap-start ml-4">
+        <div key={ index } className="snap-start ml-4">
           <label htmlFor={item} className="">
             <input
               checked={true}
@@ -33,9 +33,9 @@ export default class PopUp extends React.Component {
       );
     });
 
-    const bookList = bookSelected.map((item) => {
+    const bookList = bookSelected.map((item, index) => {
       return (
-        <div className="snap-start ml-4">
+        <div key={ index } className="snap-start ml-4">
           <label htmlFor={item} className="">
             <input
               className=""

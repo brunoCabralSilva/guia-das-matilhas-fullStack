@@ -17,7 +17,7 @@ export default class GiftExibition extends React.Component {
   returnListBelongs = (arrayCategories) => {
     const array = arrayCategories.map((array, index) => {
       if (index + 1 < arrayCategories.length) {
-        return (<span>
+        return (<span key={ index } >
           {array}
           {', '}
         </span>
@@ -25,7 +25,7 @@ export default class GiftExibition extends React.Component {
       }
       else { 
         return (
-          <span>
+          <span key={ index } >
             {array}
             {'.'}
           </span>
@@ -36,9 +36,8 @@ export default class GiftExibition extends React.Component {
   };
 
   returnListFonts = (source) => {
-    { console.log(source) }
-    return source.map((array) => (
-      <p>
+    return source.map((array, index) => (
+      <p key={ index } >
         Livro:
         {' '}
         {array.book}

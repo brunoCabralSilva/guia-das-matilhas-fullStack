@@ -32,7 +32,7 @@ export default class Allies extends React.Component {
     const contact = links.map((cont, index) => {
       const { href, rede } = cont;
       return (
-        <ContactIcon iconName={this.returnCont(rede)} link={ href } index={ index } />
+        <ContactIcon key={ index }  iconName={this.returnCont(rede)} link={ href } index={ index } />
       );
     });
     return (<div className="w-full flex flex-row justify-center md:justify-start flex-wrap">{ contact }</div>);
@@ -86,7 +86,7 @@ export default class Allies extends React.Component {
           <p className="px-6 md:px-4">{
             description === ''
               ? 'Aguardando texto descritivo por parte dos colaboradores'
-              : <p className="text-center md:text-left">{ description }</p>
+              : <span className="text-center md:text-left">{ description }</span>
           }
           </p>
           <div className="p-6 md:p-4 flex flex-row">

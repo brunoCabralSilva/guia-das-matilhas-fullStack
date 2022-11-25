@@ -1,14 +1,20 @@
 import React from 'react';
+import axios from 'axios';
 import { motion } from 'framer-motion';
 import Nav from '../components/Nav';
 import Footer from '../components/Footer';
-import tribos from '../data/tribos.json';
 import Carousel from '../components/Carousel';
 
-export default class Trybes extends React.Component {
+export default class Trybes extends React.Component { 
+  state = {
+    trybeLists: [],
+  }
 
-  componentDidMount() {
+  async componentDidMount() {
     window.scrollTo(0, 0);
+    const allLists = await axios.get('http://localhost:3301/gifts/lists');
+    this.setState({ trybeLists: allLists.data.queryTrybes });
+    console.log(allLists.data.queryTrybes)
   }
 
   render() {
@@ -29,12 +35,15 @@ export default class Trybes extends React.Component {
             <Nav />
           </div>
           <h1 className="text-4xl text-white bg-gradient-to-r from-f-transp to-transparent p-5 ml-3 mt-2 sm:mt-3">Tribos</h1>
-          <Carousel
-            list={tribos}
-            repository="trybes"
-            navigation={true}
-            loop={true}
-          />
+          {
+            this.state.trybeLists.length> 0 &&
+              <Carousel
+              list={this.state.trybeLists}
+              repository="trybes"
+              navigation={true}
+              loop={true}
+            />
+          }
         </div>
         <div className="footer-features">
           <Footer />

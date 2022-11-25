@@ -2,13 +2,19 @@ import React from 'react';
 import { motion } from 'framer-motion';
 import Nav from '../components/Nav';
 import Footer from '../components/Footer';
-import augurios from '../data/augurios.json';
+import axios from 'axios';
 import Carousel from '../components/Carousel';
 
 export default class Auspices extends React.Component {
+  state = {
+    trybeLists: [],
+  }
 
-  componentDidMount() {
+  async componentDidMount() {
     window.scrollTo(0, 0);
+    const allLists = await axios.get('http://localhost:3301/gifts/lists');
+    this.setState({ trybeLists: allLists.data.queryAuspices });
+    console.log(allLists.data.queryAuspices)
   }
 
   render() {
@@ -31,12 +37,15 @@ export default class Auspices extends React.Component {
           <h1 className="text-4xl text-white bg-gradient-to-r from-f-transp to-transparent p-5 ml-3 mt-2 sm:mt-3">
             Augúrios
           </h1>
-          <Carousel
-            list={augurios}
-            repository='auspices'
-            navigation={true}
-            loop={true}
-          />
+          {
+            this.state.trybeLists.length> 0 &&
+            <Carousel
+              list={this.state.trybeLists}
+              repository='auspices'
+              navigation={true}
+              loop={true}
+            />
+          }
         </div>
         <div className="footer-features">
           <Footer />

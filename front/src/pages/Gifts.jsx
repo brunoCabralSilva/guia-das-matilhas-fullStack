@@ -6,15 +6,15 @@ import Filter from '../components/Filter';
 import GiftSearch from '../components/GiftSearch';
 import Footer from '../components/Footer';
 import PopUp from '../components/PopUp';
-const raca = require('../data/racas.json');
 const posto = require('../data/posto.json');
-const dados = require('../data/dons.json');
-const augurios = require('../data/augurios.json');
-const tribos = require('../data/tribos.json');
 
 export default class Gifts extends React.Component {
   state = {
     listAllGifts: false,
+    listAuspices: [],
+    listBreeds: [],
+    listTrybes: [],
+    listBooks: [],
     feature: [],
     rankSelected: [],
     bookSelected: [],
@@ -34,8 +34,23 @@ export default class Gifts extends React.Component {
 
   async componentDidMount() {
     window.scrollTo(0, 0);
+    console.log('olá');
     const data = await axios.get('http://localhost:3301/gifts');
-    this.setState({ listAllGifts: data.data });
+    const allLists = await axios.get('http://localhost:3301/gifts/lists');
+    console.log(allLists);
+    console.log('data',data);
+
+    this.setState({ 
+      listAuspices: allLists.data.queryAuspices,
+      listBreeds: allLists.data.queryBreeds,
+      listTrybes: allLists.data.queryTrybes,
+      listBooks: allLists.data.queryBooks,
+      listAllGifts: data.data,
+    });
+    console.log('Auspices', this.state.listAuspices);
+    console.log('Breeds', this.state.listBreeds);
+    console.log('Trybes', this.state.listTrybes);
+    console.log('Books', this.state.listBooks);
   }
 
   giftReturn = () => {
@@ -103,34 +118,6 @@ export default class Gifts extends React.Component {
       });
       this.setState({ feature: removeItem });
     }
-  }
-
-  bookList = () => {
-    const books = [];
-    const allSrc = dados.map((gift) => gift.source);
-    const moreThanOneBook = allSrc.filter((book) => book.includes('/'));
-    const oneBookBySrc = allSrc.filter((book) => !book.includes('/'));
-    moreThanOneBook.forEach((book) => {
-      let l = 0;
-      for (let i = 0; i < book.length; i += 1) {
-        if (book[i].includes('/')) {
-          l += 1;
-        }
-      }
-      if (l === 1) {
-        const srcDivide = book.split(' / ', 2);
-        srcDivide.forEach((book) => oneBookBySrc.push(book));
-      } else {
-        const srcDivide = book.split(' / ', 3);
-        srcDivide.forEach((book) => oneBookBySrc.push(book));
-      }
-    });
-    oneBookBySrc.forEach((book) => {
-      if (!books.includes(book)) {
-        books.push(book);
-      }
-    });
-    return books;
   }
 
   minimizes = (attrib) => {
@@ -202,9 +189,9 @@ export default class Gifts extends React.Component {
       return (item === "Impuros" || item === "Hominídeos" || item === "Lupinos");
     });
 
-    const breeds = breedFilter.map((item) => {
+    const breeds = breedFilter.map((item, index) => {
       return (
-        <div className="ml-4">
+        <div key={ index } className="ml-4">
           <label htmlFor={item} className="label-item">
             <input
               className="label-item"
@@ -224,9 +211,9 @@ export default class Gifts extends React.Component {
       return (item === "Ahroun" || item === "Philodox" || item === "Galliard" || item === "Theurge" || item === "Ragabash")
     });
 
-    const augurios = filtroAugurios.map((item) => {
+    const augurios = filtroAugurios.map((item, index) => {
       return (
-        <div className="ml-4">
+        <div key={ index } className="ml-4">
           <label htmlFor={item} className="label-item">
             <input
               className="label-item"
@@ -250,9 +237,9 @@ export default class Gifts extends React.Component {
       }
     });
 
-    const tribos = filtroTribos.map((item) => {
+    const tribos = filtroTribos.map((item, index) => {
       return (
-        <div className="ml-4">
+        <div key={ index } className="ml-4">
           <label htmlFor={item} className="label-item">
             <input
               className="label-item"
@@ -392,7 +379,7 @@ export default class Gifts extends React.Component {
                 name="Raças"
                 select={this.featureSelected}
                 statusMinimize={minimizeBreed}
-                list={raca}
+                list={this.state.listBreeds}
                 nameMinimize="minimizeBreed"
                 funcMin={this.minimizes}
                 itemsSelected={[...feature, ...rankSelected, ...bookSelected]}
@@ -401,7 +388,7 @@ export default class Gifts extends React.Component {
                 name="Tribos"
                 select={this.featureSelected}
                 statusMinimize={minimizeTrybe}
-                list={tribos}
+                list={this.state.listTrybes}
                 nameMinimize="minimizeTrybe"
                 funcMin={this.minimizes}
                 itemsSelected={[...feature, ...rankSelected, ...bookSelected]}
@@ -410,7 +397,7 @@ export default class Gifts extends React.Component {
                 name="Augúrios"
                 select={this.featureSelected}
                 statusMinimize={minimizeAuspices}
-                list={augurios}
+                list={this.state.listAuspices}
                 nameMinimize="minimizeAuspices"
                 funcMin={this.minimizes}
                 itemsSelected={[...feature, ...rankSelected, ...bookSelected]}
@@ -430,7 +417,7 @@ export default class Gifts extends React.Component {
                 statusMinimize={minimizeBook}
                 nameMinimize="minimizeBook"
                 funcMin={this.minimizes}
-                list={this.bookList().sort()}
+                list={this.state.listBooks.sort()}
                 itemsSelected={[...feature, ...rankSelected, ...bookSelected]}
               />
               <div className="w-full flex justify-center">

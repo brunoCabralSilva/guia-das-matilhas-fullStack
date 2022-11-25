@@ -15,6 +15,7 @@ export default class Friends extends React.Component {
     const all = friends.map((friend, index) => {
       return (
         <Allies
+          key={ index }
           name={friend.nome}
           description={friend.descrição}
           image={friend.imagem}

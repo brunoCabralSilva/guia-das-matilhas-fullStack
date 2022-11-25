@@ -53,9 +53,9 @@ export default class GiftSearch extends React.Component {
         if (items.includes(true)) return dom;
       });
     }
-    console.log('filter', filter);
-    const filtredGifts = filter.map((dom) => (
+    const filtredGifts = filter.map((dom, index) => (
       <GiftExibition
+        key={ index } 
         source={dom.font}
         arrayCategories={dom.belong}
         arraysubtypes={[]}
@@ -69,7 +69,6 @@ export default class GiftSearch extends React.Component {
         admin={false}
       />
       ));
-    console.log('filtred',filtredGifts);
     return filtredGifts;
   }
 

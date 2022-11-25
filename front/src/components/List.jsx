@@ -9,57 +9,54 @@ export default class List extends React.Component {
       itemsSelected,
     } = this.props;
 
-    const divList = list.map((element) => {
-      const {
-        imagemGlifoBranco,
-        imgGlifoSemFundo,
-        imgGlifo,
-        nome,
-        posto,
-      } = element;
+    const divList = list.map((element, index) => {
       if (type === "Augúrios") {
+        const { auspices_name, auspices_image2 } = element;
         return (
           <div
+            key={ index } 
             className={
-              itemsSelected.includes(nome)
+              itemsSelected.includes(auspices_name)
               ? "w-full h-40 mob-5:w-40% mob-4:w-23% mob-6:w-28% flex flex-col items-center justify-center bg-center bg-boca bg-cover p-2 m-2"
               : "w-full h-40 mob-5:w-40% mob-4:w-23% mob-6:w-28% flex flex-col items-center justify-center bg-center bg-night bg-cover p-2 m-2"
             }
-            name={nome} onClick={select}
+            name={auspices_name} onClick={select}
           >
             <img
-              src={require(`../images/auspices/${imagemGlifoBranco}`)}
-              alt={nome}
-              name={nome}
+              src={require(`../images/auspices/${auspices_image2}`)}
+              alt={auspices_name}
+              name={auspices_name}
               className="object-contain sm:h-32 h-28 p-2"
             />
-            <p name={nome} className="leading-6 pb-2 text-sm sm:text-xl font-bold w-90% text-center">{nome}</p>
+            <p name={auspices_name} className="leading-6 pb-2 text-sm sm:text-xl font-bold w-90% text-center">{auspices_name}</p>
           </div>
         );
       }
 
       if (type === "Tribos") {
+        const { trybes_name, trybes_image4 } = element;
         return (
           <div
             className={
-              itemsSelected.includes(nome)
+              itemsSelected.includes(trybes_name)
               ? "w-full h-40 mob-5:w-40% mob-4:w-23% mob-6:w-28% flex flex-col items-center justify-center bg-center bg-boca bg-cover p-2 m-2"
               : "w-full h-40 mob-5:w-40% mob-4:w-23% mob-6:w-28% flex flex-col items-center justify-center bg-center bg-night bg-cover p-2 m-2"
             }
-            name={nome} onClick={select}
+            name={trybes_name} onClick={select}
           >
             <img
-              src={require(`../images/trybes/${imgGlifoSemFundo}`)}
+              src={require(`../images/trybes/${trybes_image4}`)}
               className="object-contain sm:h-32 h-28 p-2"
-              alt={nome}
-              name={nome}
+              alt={trybes_name}
+              name={trybes_name}
             />
-            <p className="leading-6 pb-2 text-sm sm:text-base font-bold w-95% text-center">{nome}</p>
+            <p className="leading-6 pb-2 text-sm sm:text-base font-bold w-95% text-center">{trybes_name}</p>
           </div>
         );
       }
 
       if (type === 'Postos') {
+        const { nome, posto } = element;
         return (
           <div
             className={
@@ -75,36 +72,38 @@ export default class List extends React.Component {
       }
 
       if (type === 'Raças') {
+        const { breeds_name, breeds_image1 } = element;
         return (
           <div
             className={
-              itemsSelected.includes(nome)
+              itemsSelected.includes(breeds_name)
               ? "w-full h-40 mob-5:w-40% mob-4:w-32% mob-6:w-28% flex flex-col items-center justify-center bg-center bg-boca bg-cover p-2 m-2"
               : "w-full h-40 mob-5:w-40% mob-4:w-32% mob-6:w-28% flex flex-col items-center justify-center bg-center bg-night bg-cover p-2 m-2"
             }
-            name={nome} onClick={select}
+            name={breeds_name} onClick={select}
           >
             <img
-              src={require(`../images/breeds/${imgGlifo}`)}
+              src={require(`../images/breeds/${breeds_image1}`)}
               className="object-contain sm:h-32 h-28 p-2"
-              alt={nome}
-              name={nome}
+              alt={breeds_name}
+              name={breeds_name}
             />
-            <p name={nome} className="leading-6 pb-2 text-sm sm:text-xl font-bold w-95% text-center">{nome}</p>
+            <p name={breeds_name} className="leading-6 pb-2 text-sm sm:text-xl font-bold w-95% text-center">{breeds_name}</p>
           </div>
         );
       }
 
+      const { belong_name } = element;
       return (
         <div
             className={
-              itemsSelected.includes(element)
+              itemsSelected.includes(belong_name)
               ? "w-full h-40 mob-5:w-40% mob-4:w-23% mob-6:w-28% flex flex-col items-center justify-center bg-center bg-boca bg-cover p-2 m-2"
               : "w-full h-40 mob-5:w-40% mob-4:w-23% mob-6:w-28% flex flex-col items-center justify-center bg-center bg-night bg-cover p-2 m-2"
             }
-            name={nome} onClick={select}
+            name={belong_name} onClick={select}
           >
-          <p name={element} className="leading-6 pb-2 text-sm sm:text-xl font-bold w-95% text-center">{element}</p>
+          <p name={belong_name} className="leading-6 pb-2 text-sm sm:text-xl font-bold w-95% text-center">{belong_name}</p>
         </div>
       );
     });
