@@ -1,8 +1,14 @@
 import React from 'react';
+import axios from 'axios';
 
 export default class GiftExibition extends React.Component {
   state = {
     giftDescription: 'hidden',
+  }
+
+  deleteItem = async (name, level, description) => {
+    const resp =  await axios.delete('http://localhost:3301/gifts/delete', { name, level, description });
+    window.alert(`Deletado com sucesso ${resp}`);
   }
 
   enableDisableGift = () => {
@@ -65,6 +71,7 @@ export default class GiftExibition extends React.Component {
       system,
       name,
       level,
+      admin
     } = this.props;
     const { giftDescription } = this.state;
     return (
@@ -111,6 +118,18 @@ export default class GiftExibition extends React.Component {
           <p className="my-2"><strong>Texto do livro:</strong></p>
           <p className="my-2">{description}</p>
           <p className="my-2"><strong>System:</strong> {system}</p>
+          {
+            admin &&
+            <div className="mt-6">
+              <button className="bg-black mr-1 p-3">Editar</button>
+              <button
+                className="bg-black ml-2 p-3"
+                onClick={ () => this.deleteItem(name, level, description) }
+              >
+                Excluir
+              </button>
+            </div>
+          }
         </div>
       </section >
     );

@@ -47,10 +47,6 @@ export default class Gifts extends React.Component {
       listBooks: allLists.data.queryBooks,
       listAllGifts: data.data,
     });
-    console.log('Auspices', this.state.listAuspices);
-    console.log('Breeds', this.state.listBreeds);
-    console.log('Trybes', this.state.listTrybes);
-    console.log('Books', this.state.listBooks);
   }
 
   giftReturn = () => {
@@ -292,8 +288,8 @@ export default class Gifts extends React.Component {
       animationPopUp,
     } = this.state;
     return (
-      <div className="bg-wolf-01 bg-cover bg-center sm:bg-top pt-2 text-white flex justify-center">
-        <div className="max-w-1200px relative flex flex-col">
+      <div className="bg-wolf-01 bg-cover bg-center sm:bg-top pt-2 text-white flex flex-col justify-center">
+        <div className="w-full items-center relative flex flex-col">
         <div className="bg-f-transp absolute"></div>
           <Nav />
         <motion.div
@@ -443,8 +439,8 @@ export default class Gifts extends React.Component {
             }
           </div>
         </motion.div>
-          <Footer />
       </div>
+        <Footer />
       </div>
     );
   }
