@@ -7,8 +7,8 @@ export default class GiftExibition extends React.Component {
   }
 
   deleteItem = async (name, level, description) => {
-    const resp =  await axios.delete('http://localhost:3301/gifts/delete', { name, level, description });
-    window.alert(`Deletado com sucesso ${resp}`);
+    const deleteGift =  await axios.delete('http://localhost:3301/gifts/delete', { data: { name, level, description }});
+    window.alert(deleteGift.data.message);
   }
 
   enableDisableGift = () => {

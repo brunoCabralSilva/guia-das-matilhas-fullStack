@@ -51,24 +51,26 @@ CREATE TABLE gifts (
   gift_id INT PRIMARY KEY AUTO_INCREMENT,
   gift_name VARCHAR(50) NOT NULL,
   gift_rank INT NOT NULL,
-  gift_textPtBr VARCHAR(200) NOT NULL,
-  gift_systemPtBr VARCHAR(200) NOT NULL,
-  gift_textOriginal VARCHAR(200) NOT NULL,
-  gift_systemOriginal VARCHAR(200) NOT NULL
+  gift_textPtBr VARCHAR(800) NOT NULL,
+  gift_systemPtBr VARCHAR(800) NOT NULL,
+  gift_textOriginal VARCHAR(800) NOT NULL,
+  gift_systemOriginal VARCHAR(800) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 CREATE TABLE gifts_font (
   gift_id INT NOT NULL,
   font_id INT NOT NULL,
   CONSTRAINT FOREIGN KEY (gift_id) REFERENCES gifts (gift_id),
-  CONSTRAINT FOREIGN KEY (font_id) REFERENCES fonts (font_id)
+  CONSTRAINT FOREIGN KEY (font_id) REFERENCES fonts (font_id).
+  ON DELETE CASCADE,
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 CREATE TABLE gifts_belong (
   gift_id INT NOT NULL,
   belong_id INT NOT NULL,
   CONSTRAINT FOREIGN KEY (gift_id) REFERENCES gifts (gift_id),
-  CONSTRAINT FOREIGN KEY (belong_id) REFERENCES belongs (belong_id)
+  CONSTRAINT FOREIGN KEY (belong_id) REFERENCES belongs(belong_id),
+  ON DELETE CASCADE,
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 CREATE TABLE login_app (
